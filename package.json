@@ -1,0 +1,11 @@
+{
+  "name": "testeTecnicoBackEnd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:BeatrixFox/apiUsersAndCarBuy.git",
+  "author": "BeatrixFox <beatrix.ford@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
