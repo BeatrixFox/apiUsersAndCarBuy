@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { BuyCar } from "./BuyCar";
 
 @Entity()
 export class User {
@@ -22,4 +23,8 @@ export class User {
 
   @Column({ default: new Date().toDateString() })
   updatedOn: Date;
+
+  @OneToMany(() => BuyCar, (shoppingCar) => shoppingCar.user)
+  shoppingCars: BuyCar[];
+
 }

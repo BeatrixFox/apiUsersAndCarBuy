@@ -14,6 +14,7 @@ import {
   getOneUserController,
   updateUserController,
 } from "./controllers";
+import { getBuyCarController } from "./controllers/buyCarController";
 
 const router = Router();
 
@@ -37,6 +38,15 @@ const routes = (app: Application) => {
     validateSchema(userUpdateSchema),
     updateUserController
   );
+
+  router.get("/user/shoppingCars", authenticationMiddleware, getBuyCarController);
+  router.get("/user/oneShoppCar", authenticationMiddleware);
+  router.post("/user/saveShoppCar", authenticationMiddleware);
+  router.delete("/user/eraseShoppCar", authenticationMiddleware);
+
+  router.get("/user/shoppCar/productList", authenticationMiddleware);
+  router.post("/user/shoppCar/addProduct" , authenticationMiddleware);
+
   app.use(router);
 };
 export default routes;
