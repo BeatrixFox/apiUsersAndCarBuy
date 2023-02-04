@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
 import {BuyCar} from "./BuyCar"
 
 @Entity()
@@ -15,7 +15,11 @@ export class Product {
   @Column({ nullable: false })
   outfitter: number;
 
-  @ManyToOne(() => BuyCar, (shoppingOneCar) =>shoppingOneCar.productsList)
-  shoppingCar: BuyCar;
+  @ManyToOne(() => BuyCar)
+  @JoinColumn({
+    name: 'id_shopp_car_owner',
+    referencedColumnName: 'id',
+  })
+  shopp_car_owner: BuyCar;
 
 }

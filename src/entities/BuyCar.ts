@@ -3,7 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     ManyToOne,
-    OneToMany
+    OneToMany,
+    JoinColumn
 } from "typeorm"
 import { Product } from "./Products";
 import { User } from "./User"
@@ -12,6 +13,9 @@ import { User } from "./User"
 export class BuyCar {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
+  @Column({ nullable : false})
+  name: string;
 
   @Column({ nullable: false })
   price: string;
@@ -22,10 +26,17 @@ export class BuyCar {
   @Column({ default: new Date().toDateString() })
   createdOn: Date;
 
-  @ManyToOne(() => User, (user) => user.shoppingCars)
-  user: User;
+  @Column({ default: new Date().toDateString() })
+  updatedOn: Date;
 
-  @OneToMany(() => Product, (productItem) => productItem.shoppingCar)
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({
+    name: 'id_user_owner',
+    referencedColumnName: 'id',
+  })
+  user_owner: User;
+
+  @OneToMany(() => Product, (productItem) => productItem.shopp_car_owner)
   productsList: Product[];
 
 }

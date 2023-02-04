@@ -24,7 +24,7 @@ export class User {
   @Column({ default: new Date().toDateString() })
   updatedOn: Date;
 
-  @OneToMany(() => BuyCar, (shoppingCar) => shoppingCar.user)
-  shoppingCars: BuyCar[];
+  @OneToMany(() => BuyCar, (shoppingCar) => shoppingCar.user_owner)
+  owned_shoppCars: BuyCar[];
 
 }
