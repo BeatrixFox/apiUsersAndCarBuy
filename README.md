@@ -1,7 +1,12 @@
-# Awesome Project Build with TypeORM
+# Informações para rodar o projeto
 
-Steps to run this project:
+Esse projeto back-end a principio para teste deverá ser conectado a um banco de dados local
+
+Salve o projeto em seu computador e siga os passos abaixo para rodar o projeto
+
+### Passos para rodar o projeto:
 
 1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
+2. Insira as informações do banco de dados `ormconfig.json` file
 3. Run `npm start` command
+
