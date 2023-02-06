@@ -11,7 +11,9 @@ class BuyCarRepoData implements InterfaceBuyCarRepo {
     this.ormRepository = getRepository(BuyCar);
   }
 
-  registerBuyCar = async (shoppCar: InterfaceBuyCar) => await this.ormRepository.save(shoppCar);
+  registerBuyCar = async (shoppCar: InterfaceBuyCar) => {
+  return await this.ormRepository.save(shoppCar);
+}
 
   getBuyCars = async () => await this.ormRepository.find();
 

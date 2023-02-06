@@ -2,10 +2,9 @@ import { Router, Application, json } from "express";
 import {
   validateSchema,
   authenticationMiddleware,
-  authenticationAdminMiddleware,
-  userExistMiddleware,
+  authenticationAdminMiddleware
 } from "./middlewares";
-import { userLoginSchema, userSchema, userUpdateSchema } from "./Schemas";
+import { userLoginSchema, userSchema, userUpdateSchema,buyCarSchema,productSchema } from "./Schemas";
 import {
   createUserController,
   getUsersController,
@@ -25,7 +24,6 @@ const routes = (app: Application) => {
   router.post(
     "/users",
     validateSchema(userSchema),
-    userExistMiddleware,
     createUserController
   );
   router.get("/users", authenticationAdminMiddleware, getUsersController);
@@ -40,14 +38,15 @@ const routes = (app: Application) => {
     updateUserController
   );
 
-  router.get("/user/shoppingCars", authenticationMiddleware, getBuyCarController);
-  router.get("/user/oneShoppCar", authenticationMiddleware, getOneShoppCarController);
-  router.post("/user/saveShoppCar", authenticationMiddleware , createShoppCarController);
-  router.delete("/user/eraseShoppCar", authenticationMiddleware , deleteShoppCarController);
+  router.get("/user/shopp_car",   authenticationMiddleware, getBuyCarController);
+  router.get("/user/shopp_car/:uuid", authenticationMiddleware, getOneShoppCarController);
+  router.post("/user/shopp_car/register", authenticationMiddleware, validateSchema(buyCarSchema) , createShoppCarController);
+  router.delete("/user/shop_car/:uuid", authenticationMiddleware , deleteShoppCarController);
 
-  router.get("/user/shoppCar/productList", authenticationMiddleware , getProductsController);
-  router.post("/user/shoppCar/addProduct" , authenticationMiddleware , addProductCarListController);
-  router.delete("/user/shoppCar/delProduct" , authenticationMiddleware , delProductController);
+  router.get("/user/shopp_car/product_list", authenticationMiddleware , getProductsController);
+  router.get("/user/shopp_car/product_list/:uuid" , authenticationMiddleware , getOneShoppCarController);
+  router.post("/user/shopp_car/product_list/product" , authenticationMiddleware ,validateSchema(productSchema) , addProductCarListController);
+  router.delete("/user/shopp_car/:uuid" , authenticationMiddleware , delProductController);
 
   app.use(router);
 };

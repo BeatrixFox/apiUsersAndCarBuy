@@ -16,6 +16,7 @@ interface InterfaceUserQuery {
   email?: string;
   password?: string;
 }
+
 interface InterfaceUserRepo {
   registerUser: (user: InterfaceUser) => Promise<InterfaceUser>;
   getUsers: () => Promise<InterfaceUser[]>;

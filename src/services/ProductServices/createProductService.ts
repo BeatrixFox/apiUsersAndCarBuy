@@ -5,6 +5,7 @@ import { InterfaceProduct } from "../../repositories/products/interface";
 const createProductService = async (req: Request) => {
   try {
     const productValidated = req.body.validated;
+    console.log(productValidated);
     const productCreated: InterfaceProduct = await new ProductRepoData().registerProduct(
       productValidated
     );

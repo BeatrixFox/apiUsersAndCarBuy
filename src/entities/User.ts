@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn,JoinColumn, Column, OneToMany } from "typeorm";
 import { BuyCar } from "./BuyCar";
 
 @Entity()
@@ -25,6 +25,7 @@ export class User {
   updatedOn: Date;
 
   @OneToMany(() => BuyCar, (shoppingCar) => shoppingCar.user_owner)
+  @JoinColumn({name: 'id_user_owner' })
   owned_shoppCars: BuyCar[];
 
 }

@@ -29,11 +29,8 @@ export class BuyCar {
   @Column({ default: new Date().toDateString() })
   updatedOn: Date;
 
-  @ManyToOne(() => User, { nullable: false })
-  @JoinColumn({
-    name: 'id_user_owner',
-    referencedColumnName: 'id',
-  })
+  @ManyToOne(() => User , (user) => user.owned_shoppCars)
+  @JoinColumn({ name: 'id_user_owner'})
   user_owner: User;
 
   @OneToMany(() => Product, (productItem) => productItem.shopp_car_owner)
